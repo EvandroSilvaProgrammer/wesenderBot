@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
 const puppeteer = require('puppeteer');
+const port = process.env.PORT || 3000;
 
-
-app.get('https://app.wesender.co.ao/auth/', async(req, res) => {
-    const browser = await puppeteer.launch({ headless: false });
+app.get('/', async(req, res) => {
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     await page.goto('https://app.wesender.co.ao/auth/');
     //await page.screenshot({ path: 'example.png' });
@@ -35,13 +35,12 @@ app.get('https://app.wesender.co.ao/auth/', async(req, res) => {
         "smsEnviadas": pageData.smsEnviadas,
         "mensagensRestantes": mensagensRestantes,
         // "smsEnviadas": "pageData.smsEnv"
-
     })
 });
 
 
-app.listen(3000, () => {
-    console.log('App listening on port 3000!');
+app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port})`);
 });
 
 
