@@ -3,7 +3,7 @@ const app = express();
 const puppeteer = require('puppeteer');
 
 
-app.get('/', async(req, res) => {
+app.get('https://app.wesender.co.ao/auth/', async(req, res) => {
     const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
     await page.goto('https://app.wesender.co.ao/auth/');
